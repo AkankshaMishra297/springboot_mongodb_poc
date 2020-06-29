@@ -1,4 +1,5 @@
 package com.neo.mongoDemo.serviceImpl;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neo.mongoDemo.bean.DashBoardResponse;
 import com.neo.mongoDemo.common.CommonConstants;
-import com.neo.mongoDemo.model.User;
+import com.neo.mongoDemo.model.UserDetails;
 import com.neo.mongoDemo.repository.UserRepository;
 import com.neo.mongoDemo.service.UserService;
 
@@ -23,14 +24,14 @@ public class UserServiceImpl implements UserService{
 	private UserRepository userRepo;
 	
 	@Override
-	public String saveUser(User user) throws Exception {
+	public String saveUser(UserDetails user) throws Exception {
 		LOGGER.trace("Starting addUser() from UserServiceImpl with arguments:: dashboardRequest: "+user);
 		String returnValue = null;
 		String errorMsg = null;
 		DashBoardResponse dashboardResponse = new DashBoardResponse();
 		try {
 			
-			User user1 = this.userRepo.save(user);
+			UserDetails user1 = this.userRepo.save(user);
 
 			if(user1 != null) {
 				dashboardResponse.setStatusCode(CommonConstants.SUCCESS);
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService{
 		DashBoardResponse dashboardResponse = new DashBoardResponse();
 		try {
 			
-			List<User> user = this.userRepo.findAll();
+			List<UserDetails> user = this.userRepo.findAll();
 
 			if(user != null) {
 				dashboardResponse.setStatusCode(CommonConstants.SUCCESS);

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neo.mongoDemo.model.User;
+import com.neo.mongoDemo.model.UserDetails;
 import com.neo.mongoDemo.service.UserService;
 
 @RestController
@@ -38,7 +38,7 @@ public class UserController extends UserValidation {
 	
 	//add user
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> addUser(@RequestBody User dashboardRequest) throws Exception {
+	public ResponseEntity<?> addUser(@RequestBody UserDetails dashboardRequest) throws Exception {
 		LOGGER.trace("Starting addUser() from UserController with arguments:: dashboardRequest: "+dashboardRequest);
 		ResponseEntity<?> responseEntity = null;
 		if(validate(dashboardRequest).equals("pass")) {
