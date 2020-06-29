@@ -1,38 +1,30 @@
-package com.neo.mongoDemo.model;
+package com.neo.mongoDemo.bean;
 
-import java.util.Date;
 import java.util.List;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-@Document
-public class UserDetails {
+import com.neo.mongoDemo.model.Address;
 
-	@Id
-	private ObjectId id;
-	
+public class UserDetailsBean {
+
+	@NotNull
+	@Pattern(regexp ="([a-zA-Z]){2,16}", message = "invalid name")
 	private String name;
 
+	@NotNull
 	private int age;
 	
-	private String email;
-	
+	@NotNull
 	private double salary;
+	
+	@NotNull
+	@Pattern(regexp ="^([A-Za-z0-9])(([.])?[0-9a-z])*[@]([a-z])+([.]([a-z])+){1,3}", message = "invalid email")
+	private String email;
 
 	private List<Address> address;
 	
-	private Date createdDate;
-
-	public ObjectId getId() {
-		return id;
-	}
-
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -65,14 +57,6 @@ public class UserDetails {
 		this.address = address;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date date) {
-		this.createdDate = date;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -83,12 +67,9 @@ public class UserDetails {
 
 	@Override
 	public String toString() {
-		return "UserDetails [id=" + id + ", name=" + name + ", age=" + age + ", email=" + email + ", salary=" + salary
-				+ ", address=" + address + ", createdDate=" + createdDate + "]";
+		return "UserDetailsBean [name=" + name + ", age=" + age + ", salary=" + salary + ", email=" + email
+				+ ", address=" + address + "]";
 	}
-	
-	
 
 	
-
 }

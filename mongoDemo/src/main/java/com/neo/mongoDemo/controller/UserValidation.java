@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neo.mongoDemo.bean.DashBoardResponse;
-import com.neo.mongoDemo.model.UserDetails;
+import com.neo.mongoDemo.bean.UserDetailsBean;
 
 public class UserValidation {
 	
@@ -20,7 +20,7 @@ public class UserValidation {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserValidation.class);
 
 	
-	public String validate(UserDetails request) throws Exception {
+	public String validate(UserDetailsBean request) throws Exception {
 		LOGGER.trace("Starting validate() from UserValidation");
 
 		String returnValue=null;
@@ -28,8 +28,8 @@ public class UserValidation {
 		
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<UserDetails>> violations = validator.validate(request);
-		for (ConstraintViolation<UserDetails> violation : violations) {
+		Set<ConstraintViolation<UserDetailsBean>> violations = validator.validate(request);
+		for (ConstraintViolation<UserDetailsBean> violation : violations) {
 		    LOGGER.error(violation.getMessage());
 		    dashboardResponse.setResponseData(violation.getPropertyPath().toString() ,violation.getMessage());
 		   returnValue = MAPPER.writeValueAsString(dashboardResponse);
