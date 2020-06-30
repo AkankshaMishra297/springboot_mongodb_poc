@@ -25,6 +25,19 @@ public class UserDetails {
 	
 	private Date createdDate;
 
+	public UserDetails() {
+		super();
+	}
+
+	public UserDetails(String name, int age, String email, double salary, List<Address> address) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.email = email;
+		this.salary = salary;
+		this.address = address;
+	}
+
 	public ObjectId getId() {
 		return id;
 	}
